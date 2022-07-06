@@ -4,6 +4,8 @@ import { Home } from "./components/Home";
 
 import { Register } from "./components/Register";
 import { NavMenu } from "./components/NavMenu";
+import { EditForm } from "./components/EditForm";
+import { Details } from "./components/Details";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/edit/:id" element={<EditForm />} />
+          <Route path="/view/:id" element={<Details />} />
         </Routes>
       </BrowserRouter>
     </div>
