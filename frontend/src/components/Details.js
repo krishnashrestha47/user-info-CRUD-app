@@ -7,9 +7,19 @@ export const Details = () => {
     <Container>
       <div className="mt-4">
         <h1>Welcome Krishna Shrestha</h1>
-        <Card className="p-2" style={{ width: "40rem" }}>
+        <Card className="p-2" style={{ width: "35rem" }}>
           <Card.Body>
             <Row>
+              <div className="add_btn text-end">
+                <Button className="btn-primary mx-2">
+                  <i className="fa-solid fa-pen-to-square"></i>
+                </Button>{" "}
+                {""}
+                <Button className="btn-danger">
+                  <i className="fa-solid fa-trash-can"></i>
+                </Button>
+              </div>
+
               <div className="left_view col-lg-6 col-md-6 col-12">
                 <Card.Img style={{ width: 50 }} src={img} alt="profile" />
                 <h3 className="mt-3">
@@ -19,21 +29,29 @@ export const Details = () => {
                   Age: <span>32</span>
                 </h3>
                 <p className="mt-3">
-                  Email: <span>krish_sth2005@yahoo.com</span>
+                  <i class="fa-solid fa-envelope"></i> Email:{" "}
+                  <span>krish_sth2005@yahoo.com</span>
                 </p>
                 <p className="mt-3">
-                  Occupation: <span>Full Stack Developer</span>
+                  <i class="fa-solid fa-briefcase"></i> Occupation:{" "}
+                  <span>Full Stack Developer</span>
                 </p>
               </div>
               <div className="right_view col-lg-6 col-md-6 col-12">
                 <p className="mt-4">
-                  Mobile: <span>1234567890</span>
+                  <i class="fa-solid fa-mobile-screen"></i> Mobile:{" "}
+                  <span>1234567890</span>
                 </p>
                 <p className="mt-3">
-                  location: <span>Sydney</span>
+                  <i class="fa-solid fa-location-dot"></i> location:{" "}
+                  <span>Sydney</span>
                 </p>
                 <p className="mt-3">
-                  Description: <span>Hello! My name is krishna shrestha</span>
+                  Description:{" "}
+                  <span>
+                    Hello! My name is krishna shrestha. I am a full stack
+                    developer
+                  </span>
                 </p>
               </div>
             </Row>
