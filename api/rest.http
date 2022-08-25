@@ -1,0 +1,17 @@
+
+### get user details
+GET http://localhost:8000/register
+
+### create user details
+POST http://localhost:8000/register/
+Content-Type: application/json
+
+{
+    "name": "Krishna Shrestha",
+    "email": "krish@yahoo.com",
+    "age": "31",
+    "mobile": "1234567890",
+    "work": "Web Developer",
+    "address": "Carlton",
+    "description": "I am a good person"
+}

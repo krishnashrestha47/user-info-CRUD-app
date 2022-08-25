@@ -41,7 +41,7 @@ export const Details = () => {
                   <span>1234567890</span>
                 </p>
                 <p className="mt-3">
-                  <i class="fa-solid fa-location-dot"></i> location:{" "}
+                  <i class="fa-solid fa-location-dot"></i> Location:{" "}
                   <span>Sydney</span>
                 </p>
                 <p className="mt-3">

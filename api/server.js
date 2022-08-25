@@ -1,14 +1,21 @@
 import express from "express";
-import mongoose from "mongoose";
 
 const app = express();
 
 const PORT = 8000;
 
+app.use(express.json());
+
 //data base connection
 
 import { dbConnection } from "./src/config/db.js";
 dbConnection();
+
+//routers
+
+import router from "./src/routers/router.js";
+
+app.use("/", router);
 
 app.get("/", (req, res) => {
   return res.json({
