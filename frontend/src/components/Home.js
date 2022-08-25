@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import DefaultLayout from "../layout/DefaultLayout";
 
 export const Home = () => {
@@ -8,7 +9,9 @@ export const Home = () => {
       <div className="mt-5">
         <Container>
           <div className="add_btn mt-2 text-end">
-            <Button>Add Data</Button>
+            <Link className="nav-link" to="/register">
+              <Button>+ Add Data</Button>
+            </Link>
           </div>
           <Table striped bordered hover className="mt-5">
             <thead>

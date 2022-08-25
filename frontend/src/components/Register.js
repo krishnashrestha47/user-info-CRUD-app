@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Container, Form, Row } from "react-bootstrap";
+import { Button, Container, Form, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { postUserData } from "../helpers/axiosHelpers.js";
 import DefaultLayout from "../layout/DefaultLayout";
 
 const initialState = {
@@ -23,22 +24,27 @@ export const Register = () => {
     });
   };
 
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    const result = await postUserData(formData);
+    result.status === "success"
+      ? alert("data has been added")
+      : alert(result.message);
+  };
+
   return (
     <DefaultLayout>
       <Container>
         <NavLink to="/">Home</NavLink>
 
-        <Form className="mt-5">
+        <Form onSubmit={handleOnSubmit} className="mt-5">
           <Row>
-            <Form.Group
-              className="mb-4 col-lg-6 col-md-6 col-12"
-              controlId="formGroupEmail"
-            >
+            <Form.Group className="mb-4 col-lg-6 col-md-6 col-12">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 onChange={handleOnChange}
                 name="name"
-                type="email"
+                type="name"
                 placeholder="Enter name"
               />
             </Form.Group>
@@ -113,6 +119,7 @@ export const Register = () => {
               />
             </Form.Group>
           </Row>
+          <Button type="submit">Submit</Button>
         </Form>
       </Container>
     </DefaultLayout>
