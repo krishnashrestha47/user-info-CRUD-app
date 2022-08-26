@@ -1,5 +1,5 @@
 import express from "express";
-import { addUser, getUser } from "../models/userModel.js";
+import { addUser, getSingleUser, getUser } from "../models/userModel.js";
 
 const router = express.Router();
 
@@ -30,7 +30,10 @@ router.post("/register", async (req, res) => {
 
 router.get("/:_id?", async (req, res) => {
   try {
-    const result = await getUser();
+    const { _id } = req.params;
+    console.log(_id);
+    const result = _id ? await getSingleUser(_id) : await getUser();
+    console.log(result);
     res.json({
       status: "success",
       message: "return from get method",

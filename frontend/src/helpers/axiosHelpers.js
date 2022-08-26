@@ -16,9 +16,9 @@ export const postUserData = async (obj) => {
   }
 };
 
-export const getUserData = async () => {
+export const getUserData = async (_id) => {
   try {
-    const { data } = await axios.get(apiUrl);
+    const { data } = await axios.get(apiUrl, _id);
     return data;
   } catch (error) {
     return {

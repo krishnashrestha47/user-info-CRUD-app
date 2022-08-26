@@ -1,6 +1,6 @@
 
 ### get user details
-GET http://localhost:8000/
+GET http://localhost:8000/63075908b17d73b9463c1c1a
 
 ### create user details
 POST http://localhost:8000/register/

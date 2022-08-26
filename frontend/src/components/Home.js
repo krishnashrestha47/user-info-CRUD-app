@@ -45,9 +45,11 @@ export const Home = () => {
                   <td>{item.work}</td>
                   <td>{item.mobile}</td>
                   <td>
-                    <Button className="btn-success">
-                      <i className="fa-solid fa-eye"></i>
-                    </Button>{" "}
+                    <Link className="nav-link" key={i} to={`/view/${item._id}`}>
+                      <Button className="btn-success">
+                        <i className="fa-solid fa-eye"></i>
+                      </Button>
+                    </Link>{" "}
                     {""}
                     <Button className="btn-primary">
                       <i className="fa-solid fa-pen-to-square"></i>
