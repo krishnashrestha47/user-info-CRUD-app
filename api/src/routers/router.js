@@ -1,5 +1,5 @@
 import express from "express";
-import { addUser } from "../models/userModel.js";
+import { addUser, getUser } from "../models/userModel.js";
 
 const router = express.Router();
 
@@ -28,8 +28,20 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.get("/register", (req, res) => {
-  console.log("hey");
+router.get("/:_id?", async (req, res) => {
+  try {
+    const result = await getUser();
+    res.json({
+      status: "success",
+      message: "return from get method",
+      result,
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
 });
 
 export default router;

@@ -15,3 +15,15 @@ export const postUserData = async (obj) => {
     };
   }
 };
+
+export const getUserData = async () => {
+  try {
+    const { data } = await axios.get(apiUrl);
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};

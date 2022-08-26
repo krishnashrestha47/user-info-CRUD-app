@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { getUserData } from "../helpers/axiosHelpers";
 import DefaultLayout from "../layout/DefaultLayout";
 
 export const Home = () => {
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  const getUserInfo = async () => {
+    const { result } = await getUserData();
+    setUserData(result);
+  };
+
   return (
     <DefaultLayout>
       <div className="mt-5">
@@ -17,7 +29,7 @@ export const Home = () => {
             <thead>
               <tr className="table-warning">
                 <th>Id</th>
-                <th>Username</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Job</th>
                 <th>Number</th>
@@ -25,26 +37,28 @@ export const Home = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>mark@gmail.com</td>
-                <td>Software Developer</td>
-                <td>1234567890</td>
-                <td>
-                  <Button className="btn-success">
-                    <i className="fa-solid fa-eye"></i>
-                  </Button>{" "}
-                  {""}
-                  <Button className="btn-primary">
-                    <i className="fa-solid fa-pen-to-square"></i>
-                  </Button>{" "}
-                  {""}
-                  <Button className="btn-danger">
-                    <i className="fa-solid fa-trash-can"></i>
-                  </Button>
-                </td>
-              </tr>
+              {userData.map((item, i) => (
+                <tr>
+                  <td>{i + 1}</td>
+                  <td>{item.name}</td>
+                  <td>{item.email}</td>
+                  <td>{item.work}</td>
+                  <td>{item.mobile}</td>
+                  <td>
+                    <Button className="btn-success">
+                      <i className="fa-solid fa-eye"></i>
+                    </Button>{" "}
+                    {""}
+                    <Button className="btn-primary">
+                      <i className="fa-solid fa-pen-to-square"></i>
+                    </Button>{" "}
+                    {""}
+                    <Button className="btn-danger">
+                      <i className="fa-solid fa-trash-can"></i>
+                    </Button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </Container>
