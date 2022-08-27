@@ -33,3 +33,15 @@ export const getUserData = async (_id) => {
     };
   }
 };
+
+export const updateUser = async (_id, obj) => {
+  try {
+    const { data } = await axios.patch(apiUrl + `/${_id}`, obj);
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};

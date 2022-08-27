@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Form, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import { getUserData } from "../helpers/axiosHelpers";
+import { getUserData, updateUser } from "../helpers/axiosHelpers";
 
 const initialState = {
   name: "",
@@ -33,13 +33,18 @@ export const EditForm = () => {
       [name]: value,
     });
   };
+
+  const handleOnUpdate = async (e) => {
+    const { result } = await updateUser(_id, formData);
+  };
+
   return (
     <Container className="mt-5">
       <Link className="nav-link" to="/">
         ⏎ Home
       </Link>
 
-      <Form className="mt-5">
+      <Form onSubmit={handleOnUpdate} className="mt-5">
         <Row>
           <Form.Group className="mb-4 col-lg-6 col-md-6 col-12">
             <Form.Label>Name</Form.Label>
@@ -47,7 +52,7 @@ export const EditForm = () => {
               onChange={handleOnChange}
               name="name"
               value={formData.name}
-              type="email"
+              type="text"
               placeholder="Enter name"
             />
           </Form.Group>

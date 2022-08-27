@@ -15,3 +15,12 @@ Content-Type: application/json
     "address": "Carlton",
     "description": "I am a good person"
 }
+
+### create user details
+PATCH http://localhost:8000/63075908b17d73b9463c1c1a
+Content-Type: application/json
+
+{
+    "email": "hello@hello.com",
+    "work": "jobless"
+}

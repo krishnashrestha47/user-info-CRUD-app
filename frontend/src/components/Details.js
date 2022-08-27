@@ -13,7 +13,7 @@ export const Details = () => {
   }, []);
 
   const getSingleUserInfo = async () => {
-    const { result } = await getUserData(_id);
+    const { result } = await getUserData();
     setUserData(result);
   };
 

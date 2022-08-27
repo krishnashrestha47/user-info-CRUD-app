@@ -17,8 +17,8 @@ export const getUser = () => {
 
 //update user
 
-export const updateUser = (filter, updateObj) => {
-  return userSchema.findOneAndUpdate(filter, updateObj);
+export const updateUser = (_id, updateObj) => {
+  return userSchema.findByIdAndUpdate(_id, updateObj);
 };
 
 //delete user

@@ -1,5 +1,10 @@
 import express from "express";
-import { addUser, getSingleUser, getUser } from "../models/userModel.js";
+import {
+  addUser,
+  getSingleUser,
+  getUser,
+  updateUser,
+} from "../models/userModel.js";
 
 const router = express.Router();
 
@@ -33,6 +38,26 @@ router.get("/:_id?", async (req, res) => {
     const { _id } = req.params;
     console.log(_id);
     const result = _id ? await getSingleUser(_id) : await getUser();
+    console.log(result);
+    res.json({
+      status: "success",
+      message: "return from get method",
+      result,
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+
+router.patch("/:_id", async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const obj = req.body;
+    console.log(obj);
+    const result = await updateUser(_id, obj);
     console.log(result);
     res.json({
       status: "success",
