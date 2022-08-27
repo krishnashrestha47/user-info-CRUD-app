@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import { getUserData } from "../helpers/axiosHelpers";
+import { Alert, Button, Card, Container, Row } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
+import { deleteUser, getUserData } from "../helpers/axiosHelpers";
 import img from "../profile.png";
 
 export const Details = () => {
@@ -16,6 +16,14 @@ export const Details = () => {
     const { result } = await getUserData(_id);
     setUserData(result);
   };
+
+  const deleteSelectedUser = async (_id) => {
+    if (!window.confirm("Are you sure to delete?")) return;
+    const { data } = await deleteUser(_id);
+    console.log(data.status);
+    data.status === "success" && alert("The user has been deleted");
+  };
+
   console.log(userData);
   return (
     <Container>
@@ -44,10 +52,15 @@ export const Details = () => {
               </div>
               <div className="right_view col-lg-6 col-md-6 col-12">
                 <div className="add_btn text-end">
-                  <Button className="btn-primary mx-2">
-                    <i className="fa-solid fa-pen-to-square"></i>
-                  </Button>
-                  <Button className="btn-danger">
+                  <Link to={`/edit/${_id}`}>
+                    <Button className="btn-primary mx-2">
+                      <i className="fa-solid fa-pen-to-square"></i>
+                    </Button>
+                  </Link>
+                  <Button
+                    onClick={() => deleteSelectedUser(userData._id)}
+                    className="btn-danger"
+                  >
                     <i className="fa-solid fa-trash-can"></i>
                   </Button>
                 </div>

@@ -6,8 +6,8 @@ POST http://localhost:8000/register/
 Content-Type: application/json
 
 {
-    "name": "Krisdsafgdh",
-    "email": "k@yah.oo",
+    "name": "Krishna",
+    "email": "ks@ysah.coao",
     "age": "31",
     "mobile": "1234567890",
     "work": "Web Developer",
