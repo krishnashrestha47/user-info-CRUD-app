@@ -1,14 +1,13 @@
 
 ### get user details
-GET http://localhost:8000/63075908b17d73b9463c1c1a
-
+GET http://localhost:8000
 ### create user details
 POST http://localhost:8000/register/
 Content-Type: application/json
 
 {
-    "name": "Krishna Shrestha",
-    "email": "krish@yahoo.com",
+    "name": "Krisdsafgdh",
+    "email": "k@yah.oo",
     "age": "31",
     "mobile": "1234567890",
     "work": "Web Developer",
@@ -24,3 +23,7 @@ Content-Type: application/json
     "email": "hello@hello.com",
     "work": "jobless"
 }
+
+### delete a single user based on id
+DELETE http://localhost:8000/6309d9b995c05023ae40adde
+Content-Type: application/json
