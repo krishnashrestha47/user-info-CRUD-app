@@ -18,7 +18,13 @@ export const postUserData = async (obj) => {
 
 export const getUserData = async (_id) => {
   try {
-    const { data } = await axios.get(apiUrl, _id);
+    let getUrl;
+    if (_id) {
+      getUrl = apiUrl + `/${_id}`;
+    } else {
+      getUrl = apiUrl;
+    }
+    const { data } = await axios.get(getUrl);
     return data;
   } catch (error) {
     return {

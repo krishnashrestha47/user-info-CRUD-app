@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Container, Form, Row } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Button, Container, Form, Row } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
+import { getUserData } from "../helpers/axiosHelpers";
 
 const initialState = {
   name: "",
@@ -12,7 +13,18 @@ const initialState = {
   description: "",
 };
 export const EditForm = () => {
+  useEffect(() => {
+    getSingleUserInfo();
+  }, []);
+
   const [formData, setFormData] = useState(initialState);
+
+  const { _id } = useParams();
+
+  const getSingleUserInfo = async () => {
+    const { result } = await getUserData(_id);
+    setFormData(result);
+  };
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -21,21 +33,20 @@ export const EditForm = () => {
       [name]: value,
     });
   };
-
   return (
-    <Container>
-      <NavLink to="/">Home Hello </NavLink>
+    <Container className="mt-5">
+      <Link className="nav-link" to="/">
+        ⏎ Home
+      </Link>
 
       <Form className="mt-5">
         <Row>
-          <Form.Group
-            className="mb-4 col-lg-6 col-md-6 col-12"
-            controlId="formGroupEmail"
-          >
+          <Form.Group className="mb-4 col-lg-6 col-md-6 col-12">
             <Form.Label>Name</Form.Label>
             <Form.Control
               onChange={handleOnChange}
               name="name"
+              value={formData.name}
               type="email"
               placeholder="Enter name"
             />
@@ -48,6 +59,7 @@ export const EditForm = () => {
             <Form.Control
               onChange={handleOnChange}
               name="email"
+              value={formData.email}
               type="email"
               placeholder="Enter email"
             />
@@ -60,6 +72,7 @@ export const EditForm = () => {
             <Form.Control
               onChange={handleOnChange}
               name="age"
+              value={formData.age}
               type="number"
               placeholder="Enter age"
             />
@@ -72,6 +85,7 @@ export const EditForm = () => {
             <Form.Control
               onChange={handleOnChange}
               name="mobile"
+              value={formData.mobile}
               type="number"
               placeholder="Enter mobile number"
             />
@@ -84,6 +98,7 @@ export const EditForm = () => {
             <Form.Control
               onChange={handleOnChange}
               name="work"
+              value={formData.work}
               type="text"
               placeholder="Enter work"
             />
@@ -96,6 +111,7 @@ export const EditForm = () => {
             <Form.Control
               onChange={handleOnChange}
               name="address"
+              value={formData.address}
               type="text"
               placeholder="Enter address"
             />
@@ -106,11 +122,13 @@ export const EditForm = () => {
               onChange={handleOnChange}
               name="description"
               as="textarea"
+              value={formData.description}
               rows={5}
               placeholder="Your text here"
             />
           </Form.Group>
         </Row>
+        <Button type="submit">Update</Button>
       </Form>
     </Container>
   );

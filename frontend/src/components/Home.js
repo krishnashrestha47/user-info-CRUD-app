@@ -44,17 +44,18 @@ export const Home = () => {
                   <td>{item.email}</td>
                   <td>{item.work}</td>
                   <td>{item.mobile}</td>
-                  <td>
-                    <Link className="nav-link" key={i} to={`/view/${item._id}`}>
+                  <td className="d-flex">
+                    <Link className="nav-link" to={`/view/${item._id}`}>
                       <Button className="btn-success">
                         <i className="fa-solid fa-eye"></i>
                       </Button>
                     </Link>{" "}
                     {""}
-                    <Button className="btn-primary">
-                      <i className="fa-solid fa-pen-to-square"></i>
-                    </Button>{" "}
-                    {""}
+                    <Link className="nav-link" to={`/edit/${item._id}`}>
+                      <Button className="btn-primary">
+                        <i className="fa-solid fa-pen-to-square"></i>
+                      </Button>
+                    </Link>
                     <Button className="btn-danger">
                       <i className="fa-solid fa-trash-can"></i>
                     </Button>
