@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addUser,
+  deleteUser,
   getSingleUser,
   getUser,
   updateUser,
@@ -61,9 +62,32 @@ router.patch("/:_id", async (req, res) => {
     console.log(result);
     res.json({
       status: "success",
-      message: "return from get method",
+      message: "The user details has been updated",
       result,
     });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+
+router.delete("/:_id", async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const result = await deleteUser(_id);
+    console.log(result);
+    result?._id
+      ? res.json({
+          status: "success",
+          message: "The user has been deleted",
+          result,
+        })
+      : res.json({
+          status: "error",
+          message: "couldn't delete the user",
+        });
   } catch (error) {
     res.json({
       status: "error",

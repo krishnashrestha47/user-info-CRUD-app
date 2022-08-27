@@ -45,3 +45,16 @@ export const updateUser = async (_id, obj) => {
     };
   }
 };
+
+export const deleteUser = async (_id) => {
+  try {
+    const response = await axios.delete(apiUrl + `/${_id}`);
+    console.log(response);
+    return response;
+  } catch (error) {
+    return {
+      status: "error",
+      message: "error.message",
+    };
+  }
+};

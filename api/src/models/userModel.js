@@ -23,6 +23,6 @@ export const updateUser = (_id, updateObj) => {
 
 //delete user
 
-export const deleteUser = (filter) => {
-  return userSchema.findOneAndDelete(filter);
+export const deleteUser = (_id) => {
+  return userSchema.findByIdAndDelete(_id);
 };

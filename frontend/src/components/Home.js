@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { getUserData } from "../helpers/axiosHelpers";
+import { deleteUser, getUserData } from "../helpers/axiosHelpers";
 import DefaultLayout from "../layout/DefaultLayout";
 
 export const Home = () => {
@@ -12,8 +12,15 @@ export const Home = () => {
   }, []);
 
   const getUserInfo = async () => {
-    const { result } = await getUserData();
-    setUserData(result);
+    const data = await getUserData();
+    data.status === "success" && setUserData(data.result);
+  };
+
+  const deleteSelectedUser = async (_id) => {
+    if (!window.confirm("Are you sure to delete?")) return;
+    const { data } = await deleteUser(_id);
+    console.log(data.status);
+    data.status === "success" && getUserInfo();
   };
 
   return (
@@ -56,7 +63,10 @@ export const Home = () => {
                         <i className="fa-solid fa-pen-to-square"></i>
                       </Button>
                     </Link>
-                    <Button className="btn-danger">
+                    <Button
+                      onClick={() => deleteSelectedUser(item._id)}
+                      className="btn-danger"
+                    >
                       <i className="fa-solid fa-trash-can"></i>
                     </Button>
                   </td>
