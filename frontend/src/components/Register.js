@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, Form, Row } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { postUserData } from "../helpers/axiosHelpers.js";
 import DefaultLayout from "../layout/DefaultLayout";
 
@@ -34,8 +34,10 @@ export const Register = () => {
 
   return (
     <DefaultLayout>
-      <Container>
-        <NavLink to="/">Home</NavLink>
+      <Container style={{ height: "70vh" }} className="mt-5">
+        <Link className="nav-link" to="/">
+          ⏎ back
+        </Link>
 
         <Form onSubmit={handleOnSubmit} className="mt-5">
           <Row>
