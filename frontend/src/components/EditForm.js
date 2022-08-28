@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Form, Row } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getUserData, updateUser } from "../helpers/axiosHelpers";
 import DefaultLayout from "../layout/DefaultLayout";
 
@@ -14,6 +14,8 @@ const initialState = {
   description: "",
 };
 export const EditForm = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     getSingleUserInfo();
   }, []);
@@ -36,7 +38,11 @@ export const EditForm = () => {
   };
 
   const handleOnUpdate = async (e) => {
-    const { result } = await updateUser(_id, formData);
+    e.preventDefault();
+    const result = await updateUser(_id, formData);
+    console.log(result);
+    result.status === "success" && alert("updated");
+    navigate("/");
   };
 
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { postUserData } from "../helpers/axiosHelpers.js";
 import DefaultLayout from "../layout/DefaultLayout";
 
@@ -15,6 +15,7 @@ const initialState = {
 };
 export const Register = () => {
   const [formData, setFormData] = useState(initialState);
+  const navigate = useNavigate();
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -27,14 +28,16 @@ export const Register = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const result = await postUserData(formData);
+    console.log(result);
     result.status === "success"
       ? alert("data has been added")
       : alert(result.message);
+    result.result?._id && navigate("/");
   };
 
   return (
     <DefaultLayout>
-      <Container style={{ height: "70vh" }} className="mt-5">
+      <Container style={{ "min-height": "70vh" }} className="mt-5">
         <Link className="nav-link" to="/">
           ⏎ back
         </Link>

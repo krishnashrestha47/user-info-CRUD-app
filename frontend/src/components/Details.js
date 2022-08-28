@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Card, Container, Row } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteUser, getUserData } from "../helpers/axiosHelpers";
 import DefaultLayout from "../layout/DefaultLayout";
 import img from "../profile.png";
 
 export const Details = () => {
   const [userData, setUserData] = useState([]);
+
+  const navigate = useNavigate();
 
   const { _id } = useParams();
   useEffect(() => {
@@ -23,6 +25,7 @@ export const Details = () => {
     const { data } = await deleteUser(_id);
     console.log(data.status);
     data.status === "success" && alert("The user has been deleted");
+    navigate("/");
   };
 
   console.log(userData);

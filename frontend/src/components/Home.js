@@ -32,7 +32,7 @@ export const Home = () => {
               <Button>+ Add User Info</Button>
             </Link>
           </div>
-          <h1 className="text-center mt-3">Registered Users</h1>
+          <h1 className="text-center mt-3">Employee Records</h1>
           <Table striped bordered hover className="mt-5">
             <thead>
               <tr className="table-warning">
